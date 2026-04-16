@@ -26,6 +26,7 @@
         <button class="modulo-btn active" data-target="tom-card" type="button">Tom e CH</button>
         <button class="modulo-btn active" data-target="metronomo-card" type="button">Metrônomo</button>
         <button class="modulo-btn active" data-target="notas-card" type="button">Gerador de Notas</button>
+        <button class="modulo-btn active" data-target="todo-card" type="button">Lista de Estudos</button>
         <button class="modulo-btn active" data-target="player-card" type="button">Studio Player</button>
       </div>
     </section>
@@ -34,24 +35,29 @@
       <section class="card card-full" id="tom-card">
         <h2>Tom e Campo Harmônico</h2>
         <p class="descricao">
-          Escolha o tom, gere a escala e clique nos acordes para montar uma sequência.
+          Escolha o tom, o modo e se quer tríades ou tétrades. Depois monte sua sequência clicando nos acordes.
         </p>
 
-        <div class="tom-controls">
+        <div class="tom-controls tom-controls-4">
           <div class="campo">
             <label for="key-select">Tom</label>
             <select id="key-select">
               <option value="C">C</option>
-              <option value="C# / Db">C# / Db</option>
+              <option value="C#">C#</option>
+              <option value="Db">Db</option>
               <option value="D">D</option>
-              <option value="D# / Eb">D# / Eb</option>
+              <option value="D#">D#</option>
+              <option value="Eb">Eb</option>
               <option value="E">E</option>
               <option value="F">F</option>
-              <option value="F# / Gb">F# / Gb</option>
+              <option value="F#">F#</option>
+              <option value="Gb">Gb</option>
               <option value="G">G</option>
-              <option value="G# / Ab">G# / Ab</option>
+              <option value="G#">G#</option>
+              <option value="Ab">Ab</option>
               <option value="A">A</option>
-              <option value="A# / Bb">A# / Bb</option>
+              <option value="A#">A#</option>
+              <option value="Bb">Bb</option>
               <option value="B">B</option>
             </select>
           </div>
@@ -61,6 +67,14 @@
             <select id="mode-select">
               <option value="major">Maior</option>
               <option value="minor">Menor</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="chord-type-select">Estrutura</label>
+            <select id="chord-type-select">
+              <option value="triads">Tríades</option>
+              <option value="tetrads">Tétrades</option>
             </select>
           </div>
 
@@ -75,7 +89,7 @@
         </div>
 
         <div class="resultado-box">
-          <h3>Campo Harmônico</h3>
+          <h3 id="chord-title">Campo Harmônico em Tríades</h3>
           <div id="chords-container" class="chords-grid"></div>
         </div>
 
@@ -152,6 +166,65 @@
         <button id="generate-note" class="botao-principal" type="button">
           Gerar nota aleatória
         </button>
+      </section>
+
+      <section class="card card-full" id="todo-card">
+        <h2>Lista de Estudos</h2>
+        <p class="descricao">
+          Anote suas tarefas de estudo. A lista fica salva no navegador.
+        </p>
+
+        <div class="todo-input-area">
+          <input
+            id="todo-input"
+            type="text"
+            placeholder="Ex: treinar pentatônica em A por 15 minutos"
+          />
+          <button id="add-todo" class="small-btn" type="button">Adicionar</button>
+        </div>
+
+        <div class="todo-layout">
+          <div class="todo-main">
+            <div class="todo-actions">
+              <button id="clear-done-todos" class="small-btn" type="button">Limpar concluídas</button>
+              <button id="clear-all-todos" class="small-btn danger-btn" type="button">Limpar tudo</button>
+            </div>
+
+            <div class="todo-list-wrapper">
+              <ul id="todo-list" class="todo-list">
+                <li class="todo-empty">Nenhuma tarefa adicionada ainda.</li>
+              </ul>
+            </div>
+          </div>
+
+          <aside class="todo-summary">
+            <h3>Resumo</h3>
+
+            <div class="summary-cards">
+              <div class="summary-box">
+                <span>Total</span>
+                <strong id="todo-total">0</strong>
+              </div>
+
+              <div class="summary-box">
+                <span>Concluídas</span>
+                <strong id="todo-done">0</strong>
+              </div>
+
+              <div class="summary-box">
+                <span>Pendentes</span>
+                <strong id="todo-pending">0</strong>
+              </div>
+            </div>
+
+            <div class="todo-tip-box">
+              <h4>Dica</h4>
+              <p>
+                Use esta área para organizar técnica, improviso, campo harmônico e estudo com metrônomo.
+              </p>
+            </div>
+          </aside>
+        </div>
       </section>
 
       <section class="card card-full" id="player-card">
