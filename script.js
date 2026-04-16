@@ -484,7 +484,12 @@ function renderTodos() {
     return;
   }
 
-  todos.forEach((todo) => {
+  const sortedTodos = [...todos].sort((a, b) => {
+    if (a.done === b.done) return 0;
+    return a.done ? 1 : -1;
+  });
+
+  sortedTodos.forEach((todo) => {
     const item = document.createElement("li");
     item.className = `todo-item ${todo.done ? "done" : ""}`;
 
@@ -494,7 +499,10 @@ function renderTodos() {
     checkbox.checked = todo.done;
 
     checkbox.addEventListener("change", () => {
-      todo.done = checkbox.checked;
+      const originalTodo = todos.find((itemTodo) => itemTodo.id === todo.id);
+      if (originalTodo) {
+        originalTodo.done = checkbox.checked;
+      }
       saveTodos();
       renderTodos();
     });
