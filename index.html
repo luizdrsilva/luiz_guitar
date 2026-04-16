@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Groove Guitar</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topo">
+      <div class="marca">
+        <div class="logo">🎸</div>
+        <div>
+          <h1>Groove Guitar</h1>
+          <p>Treine ritmo, tempo e improviso em um só lugar.</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="conteudo">
+      <section class="card">
+        <h2>Metrônomo</h2>
+        <p class="descricao">
+          Metrônomo em 4 tempos, com a primeira batida mais forte.
+        </p>
+
+        <div class="visor-metronomo">
+          <span class="texto-menor">BPM atual</span>
+
+          <div class="linha-bpm">
+            <strong id="bpm-value">60</strong>
+            <span>BPM</span>
+          </div>
+
+          <div class="beat-indicators">
+            <div class="beat-dot" id="beat-0"></div>
+            <div class="beat-dot" id="beat-1"></div>
+            <div class="beat-dot" id="beat-2"></div>
+            <div class="beat-dot" id="beat-3"></div>
+          </div>
+        </div>
+
+        <div class="controle-bpm">
+          <label>Velocidade</label>
+
+          <div class="bpm-controls">
+            <button id="decrease-bpm" class="bpm-btn" type="button">-</button>
+            <span class="bpm-display" id="bpm-display">60</span>
+            <button id="increase-bpm" class="bpm-btn" type="button">+</button>
+          </div>
+
+          <div class="bpm-limits">
+            <span>mín: 60</span>
+            <span>máx: 150</span>
+          </div>
+        </div>
+
+        <button id="toggle-metronome" class="botao-principal" type="button">
+          Iniciar metrônomo
+        </button>
+      </section>
+
+      <section class="card">
+        <h2>Notas aleatórias</h2>
+        <p class="descricao">
+          Sorteie uma nota e improvise em cima dela sem repetição chata.
+        </p>
+
+        <div class="painel-nota">
+          <span id="note-status" class="status">Pronta</span>
+          <div id="random-note" class="nota">C</div>
+        </div>
+
+        <div class="dicas">
+          <span id="tip-major">Improvisar em C maior</span>
+          <span id="tip-minor">Improvisar em C menor</span>
+          <span id="tip-penta">Pentatônica de C</span>
+        </div>
+
+        <button id="generate-note" class="botao-principal" type="button">
+          Gerar nota aleatória
+        </button>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
