@@ -1,64 +1,206 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Groove Guitar</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="app">
+    <header class="topo">
+      <div class="marca">
+        <div class="logo">🎸</div>
+        <div>
+          <h1>Groove Guitar</h1>
+          <p>Estude ritmo, harmonia e improviso em um só lugar.</p>
+        </div>
+      </div>
+    </header>
 
-<div class="app">
+    <section class="card">
+      <h2>Módulos</h2>
+      <p class="descricao">Ative ou desative as ferramentas que quiser usar.</p>
 
-  <h1>🎸 Groove Guitar</h1>
+      <div class="modulos-grid">
+        <button class="modulo-btn active" data-target="tom-card" type="button">Tom e CH</button>
+        <button class="modulo-btn active" data-target="metronomo-card" type="button">Metrônomo</button>
+        <button class="modulo-btn active" data-target="notas-card" type="button">Gerador de Notas</button>
+        <button class="modulo-btn active" data-target="player-card" type="button">Studio Player</button>
+      </div>
+    </section>
 
-  <!-- METRONOMO -->
-  <div class="card">
-    <h2>Metrônomo</h2>
+    <main class="conteudo">
+      <section class="card card-full" id="tom-card">
+        <h2>Tom e Campo Harmônico</h2>
+        <p class="descricao">
+          Escolha o tom, gere a escala e clique nos acordes para montar uma sequência.
+        </p>
 
-    <div class="bpm-controls">
-      <button id="decrease">-</button>
-      <span id="bpm">60</span>
-      <button id="increase">+</button>
-    </div>
+        <div class="tom-controls">
+          <div class="campo">
+            <label for="key-select">Tom</label>
+            <select id="key-select">
+              <option value="C">C</option>
+              <option value="C# / Db">C# / Db</option>
+              <option value="D">D</option>
+              <option value="D# / Eb">D# / Eb</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="F# / Gb">F# / Gb</option>
+              <option value="G">G</option>
+              <option value="G# / Ab">G# / Ab</option>
+              <option value="A">A</option>
+              <option value="A# / Bb">A# / Bb</option>
+              <option value="B">B</option>
+            </select>
+          </div>
 
-    <div class="beats">
-      <div class="dot" id="b0"></div>
-      <div class="dot" id="b1"></div>
-      <div class="dot" id="b2"></div>
-      <div class="dot" id="b3"></div>
-    </div>
+          <div class="campo">
+            <label for="mode-select">Modo</label>
+            <select id="mode-select">
+              <option value="major">Maior</option>
+              <option value="minor">Menor</option>
+            </select>
+          </div>
 
-    <button id="toggleMetronome">Iniciar</button>
+          <div class="campo campo-botao">
+            <button id="generate-scale" class="botao-principal" type="button">Gerar</button>
+          </div>
+        </div>
+
+        <div class="resultado-box">
+          <h3 id="scale-title">Escala de C maior</h3>
+          <div id="scale-notes" class="tags-row"></div>
+        </div>
+
+        <div class="resultado-box">
+          <h3>Campo Harmônico</h3>
+          <div id="chords-container" class="chords-grid"></div>
+        </div>
+
+        <div class="resultado-box">
+          <div class="sequencia-topo">
+            <h3>Sequência montada</h3>
+            <div class="sequencia-acoes">
+              <button id="remove-last-chord" class="small-btn" type="button">Apagar último</button>
+              <button id="clear-sequence" class="small-btn danger-btn" type="button">Limpar</button>
+            </div>
+          </div>
+
+          <div id="sequence-box" class="sequence-box vazio">
+            Clique nos acordes para montar sua progressão
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="metronomo-card">
+        <h2>Metrônomo</h2>
+        <p class="descricao">Metrônomo em 4 tempos, com a primeira batida mais forte.</p>
+
+        <div class="visor-metronomo">
+          <span class="texto-menor">BPM atual</span>
+
+          <div class="linha-bpm">
+            <strong id="bpm-value">60</strong>
+            <span>BPM</span>
+          </div>
+
+          <div class="beat-indicators">
+            <div class="beat-dot" id="beat-0"></div>
+            <div class="beat-dot" id="beat-1"></div>
+            <div class="beat-dot" id="beat-2"></div>
+            <div class="beat-dot" id="beat-3"></div>
+          </div>
+        </div>
+
+        <div class="controle-bpm">
+          <label>Velocidade</label>
+
+          <div class="bpm-controls">
+            <button id="decrease-bpm" class="bpm-btn" type="button">-</button>
+            <span class="bpm-display" id="bpm-display">60</span>
+            <button id="increase-bpm" class="bpm-btn" type="button">+</button>
+          </div>
+
+          <div class="bpm-limits">
+            <span>mín: 60</span>
+            <span>máx: 150</span>
+          </div>
+        </div>
+
+        <button id="toggle-metronome" class="botao-principal" type="button">
+          Iniciar metrônomo
+        </button>
+      </section>
+
+      <section class="card" id="notas-card">
+        <h2>Gerador de Notas</h2>
+        <p class="descricao">Sorteie uma nota para improvisar sem repetição chata.</p>
+
+        <div class="painel-nota">
+          <span id="note-status" class="status">Pronta</span>
+          <div id="random-note" class="nota">C</div>
+        </div>
+
+        <div class="dicas">
+          <span id="tip-major">Improvisar em C maior</span>
+          <span id="tip-minor">Improvisar em C menor</span>
+          <span id="tip-penta">Pentatônica de C</span>
+        </div>
+
+        <button id="generate-note" class="botao-principal" type="button">
+          Gerar nota aleatória
+        </button>
+      </section>
+
+      <section class="card card-full" id="player-card">
+        <h2>Studio Player</h2>
+        <p class="descricao">
+          Faça upload de um áudio local ou cole um link do YouTube para ouvir no site.
+        </p>
+
+        <div class="studio-sections">
+          <div class="resultado-box">
+            <h3>Upload de música baixada</h3>
+
+            <div class="upload-box">
+              <label for="audio-file" class="upload-label">Selecionar áudio</label>
+              <input id="audio-file" type="file" accept="audio/*" />
+              <span id="audio-name" class="audio-name">Nenhum arquivo selecionado</span>
+            </div>
+
+            <audio id="original-audio" controls></audio>
+          </div>
+
+          <div class="resultado-box">
+            <h3>Ouvir com link do YouTube</h3>
+
+            <div class="youtube-box">
+              <input
+                id="youtube-link"
+                type="text"
+                placeholder="Cole aqui o link do YouTube"
+              />
+              <div class="youtube-actions">
+                <button id="load-youtube" class="small-btn" type="button">Carregar vídeo</button>
+                <button id="clear-youtube" class="small-btn danger-btn" type="button">Limpar</button>
+              </div>
+              <p id="youtube-status" class="youtube-status">
+                Cole um link do YouTube para abrir o player.
+              </p>
+            </div>
+
+            <div class="youtube-player-wrap">
+              <div id="youtube-player"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   </div>
 
-  <!-- NOTAS -->
-  <div class="card">
-    <h2>Notas Aleatórias</h2>
-
-    <div id="note" class="note">C</div>
-
-    <button id="generate">Gerar</button>
-  </div>
-
-  <!-- PLAYER -->
-  <div class="card">
-    <h2>Studio Player</h2>
-
-    <input type="file" id="file" accept="audio/*">
-
-    <button id="process">Separar Voz / Instrumental</button>
-
-    <audio id="original" controls></audio>
-
-    <h3>🎤 Voz</h3>
-    <audio id="vocal" controls></audio>
-
-    <h3>🎸 Instrumental</h3>
-    <audio id="inst" controls></audio>
-  </div>
-
-</div>
-
-<script src="script.js"></script>
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="script.js"></script>
 </body>
 </html>
