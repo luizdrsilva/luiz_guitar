@@ -68,6 +68,10 @@ body {
   box-shadow: 0 14px 35px rgba(0, 0, 0, 0.22);
 }
 
+.card_space{
+  margin-bottom: 20px;
+}
+
 .card-full {
   grid-column: 1 / -1;
 }
